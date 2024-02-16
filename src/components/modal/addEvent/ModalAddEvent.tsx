@@ -2,20 +2,31 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { IEvent, IModalAddEvent, IRide } from '../../type/interface';
-import { useForm, SubmitHandler } from "react-hook-form"
-import { fetchAddEvent } from '../../api/api';
+import { IEvent, IModalAddEvent, IRide } from '../../../type/interface';
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { timeZoneSkip } from '../../../libs/dateConvert';
+import { useAddRouteMutation } from '../../../redux/api/api';
+import "./modalAddEvent.css"
 
-export default function ModalAddEvent({ show, setShow, addEvent }: IModalAddEvent) {
-  const { register, handleSubmit } = useForm<IEvent>();
+export default function ModalAddEvent({ show, setShow }: IModalAddEvent) {
+  const { register, handleSubmit, control } = useForm<IEvent>({
+    defaultValues: {
+        seats: 12,
+    }
+});
+
+  const [addRoute] = useAddRouteMutation();
+
   const onSubmit: SubmitHandler<IEvent> = (data) => {
-    fetchAddEvent(data)
-      .then(() => addEvent(data))
-      .catch((err) => console.log('ошибка отправки формы', err.message))
+    const fixData = {
+      // число мест по дефолту установлено в -1, что значит не объявлено (обновляется при добавлении поездки)
+      ...data, start: timeZoneSkip(data.start), seats: -1
+    }
+    addRoute(fixData);
     setShow(false);
   }
-  console.log('render modal add event');
-  
 
   const handleClose = () => setShow(false);
 
@@ -30,20 +41,27 @@ export default function ModalAddEvent({ show, setShow, addEvent }: IModalAddEven
             <Form.Group className="mb-3">
               <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1">Дата поездки</InputGroup.Text>
-                <Form.Control
-                  {...register("start")}
-                  placeholder="2024-02-10"
-                  aria-describedby="basic-addon1"
+                <Controller
+                  control={control}
+                  name="start"
+                  defaultValue={new Date()}
+                  render={({ field: { onChange, value} }) => (
+                    <ReactDatePicker
+                      // wrapperClassName="customDatePicker"
+                      onChange={onChange}
+                      selected={value}
+                    />
+                  )}
                 />
               </InputGroup>
-              <InputGroup className="mb-3">
+              {/* <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon2">Места</InputGroup.Text>
                 <Form.Control
                   {...register("seats")}
-                  placeholder="9"
+                  placeholder="12"
                   aria-describedby="basic-addon2"
                 />
-              </InputGroup>
+              </InputGroup> */}
             </Form.Group>
             <Form.Group
               className="mb-3"
@@ -58,10 +76,10 @@ export default function ModalAddEvent({ show, setShow, addEvent }: IModalAddEven
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Close
+              Закрыть
             </Button>
             <Button variant="primary" type="submit">
-              Save Changes
+              Сохранить
             </Button>
           </Modal.Footer>
         </Form>

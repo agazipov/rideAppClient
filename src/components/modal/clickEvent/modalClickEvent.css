@@ -1,0 +1,15 @@
+.rideList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.addRideGroupe_right {
+    display: flex;
+    justify-content: flex-end;
+}
+.addRideGroupe_stretch {
+    display: flex;
+    justify-content: space-between;
+}

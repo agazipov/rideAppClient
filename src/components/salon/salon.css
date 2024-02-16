@@ -1,0 +1,70 @@
+.grid-container {
+    background-image: url('./wallpaper_interior_08.jpg');
+    background-repeat: round;
+    width: 200px;
+    height: 230px;
+
+    display: grid;
+
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    align-items: center;
+    justify-items: center;
+
+    gap: 10px;
+}
+
+.grid-item-1 {
+    grid-row-start: 1;
+    grid-column-start: 1;
+
+    grid-row-end: 2;
+    grid-column-end: 4;
+}
+
+.grid-item-2 {
+    grid-row-start: 1;
+    grid-column-start: 4;
+
+    grid-row-end: 2;
+    grid-column-end: 7;
+}
+
+.grid-item-4 {
+    grid-row-start: 2;
+    grid-column-start: 3;
+
+    grid-row-end: 3;
+    grid-column-end: 5;
+}
+
+.grid-item-5 {
+    grid-row-start: 2;
+    grid-column-start: 5;
+
+    grid-row-end: 3;
+    grid-column-end: 7;
+}
+
+.grid-item-3 {
+    grid-row-start: 2;
+    grid-column-start: 1;
+ 
+    grid-row-end: 3;
+    grid-column-end: 3;
+}
+
+.free {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.busy {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: red;
+}

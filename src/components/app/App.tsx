@@ -1,11 +1,34 @@
 // import './App.css';
-import { Calendar } from '../calendar/Calendar';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Auth from "../auth/Auth";
+import AdminPage from "../admin/Admin";
+import { PrivateOutlet } from "../outlet/Outlet";
+import MainPage from "../main/MainPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainPage />
+  },
+  {
+    path: "/login",
+    element: <Auth />,
+  },
+  {
+    path: "/admin",
+    element: <PrivateOutlet />,
+    children: [
+      {
+        index: true,
+        element: <AdminPage />,
+      }
+    ]
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <Calendar />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

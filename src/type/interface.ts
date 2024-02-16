@@ -1,23 +1,25 @@
+import { EventClickArg } from "@fullcalendar/core"
+
 export interface IModalAddEvent {
     show: boolean,
     setShow: (e: boolean) => void,
-    addEvent: (e: IEvent) => void
 }
 
 export interface IModalClickEvent {
-    show: boolean,
-    setShow: (e: boolean) => void,
-    content: {
+    event: EventClickArg,
+    setShow: (e: null) => void,
+    content?: {
         event: IEvent,
         rides: IRide[],
     }
 }
 
 export interface IEvent {
-    id?: string,
+    id: string,
     title: string,
-    start: string,
-    seats?: number
+    start: Date,
+    seats: number,
+    color?: string
 }
 
 export interface IRide {
@@ -25,6 +27,25 @@ export interface IRide {
     time: string,
     car: string,
     driver: string,
-    passengers: Number,
+    passengers: IPassengers,
     route?: string,
+    freeSeats?: number,
 }
+
+export interface IPassengers {
+    [key: string]: boolean,
+
+    left: boolean,
+    right: boolean,
+    mid: boolean,
+    front: boolean,
+}
+
+export interface ILoginForm {
+    name: string,
+    password: string,
+}
+
+export interface IUserResponse {
+    token: string,
+  }
