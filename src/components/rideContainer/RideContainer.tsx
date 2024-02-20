@@ -1,5 +1,5 @@
-import { IEvent, IPassengers, IRide } from "../../type/interface";
-import { useRef, useState } from "react";
+import { IEvent, IRide } from "../../type/interface";
+import { useState } from "react";
 import { RideForm } from "../rideForm/RideForm";
 import Button from 'react-bootstrap/Button';
 import './rideContainer.css';

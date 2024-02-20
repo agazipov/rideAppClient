@@ -1,29 +1,51 @@
 import { useCallback, useRef, useState } from "react";
-import { IPassengers } from "../type/interface";
+import { IClient } from "../type/interface";
 import { countFreeSeaats } from "../libs/counters";
-import { log } from "console";
+import { SubmitHandler } from "react-hook-form";
 
-const defaultValue = {
-    left: false,
-    right: false,
-    mid: false,
-    front: false
-}
+const defaultValue: IClient[] = [
+    {
+        position: 'front',
+        name: '',
+        phone: '',
+    },
+    {
+        position: 'right',
+        name: '',
+        phone: '',
+    },
+    {
+        position: 'mid',
+        name: '',
+        phone: '',
+    },
+    {
+        position: 'left',
+        name: '',
+        phone: '',
+    }
+]
 
-export function usePassenger(passengers: IPassengers  = defaultValue) {
-    const [salon, setSalon] = useState<IPassengers>(passengers);
+export function usePassenger(passengers: IClient[] = defaultValue) {
+    const [salon, setSalon] = useState<IClient[]>(passengers);
     const ref = useRef(countFreeSeaats(passengers));
     const defaultFreeSeats = ref.current;
 
-    const setPassenger = useCallback((param: string) => {
+    const setPassenger: SubmitHandler<IClient> = useCallback((data) => {
+        const { position, name, phone } = data;
         setSalon((prev) => {
-            return { ...prev, [param]: !prev[param] };
+            return prev.map((seat) => seat.position === position ? { ...seat, name, phone } : seat)
         });
     }, []);
 
-    const freeSeats = useCallback(() => {        
-        return countFreeSeaats(salon) - defaultFreeSeats;
-    }, [salon, defaultFreeSeats])
+    // выглядит как полная хуйня
+    const freeSeatsAdd = useCallback(() => {
+       return countFreeSeaats(salon);
+    }, [salon]);
 
-    return { salon, setPassenger, freeSeats }
+    const freeSeatsChange = useCallback(() => {
+        return countFreeSeaats(salon) - defaultFreeSeats;
+    }, [salon, defaultFreeSeats]);
+
+    return { salon, setPassenger, freeSeatsAdd, freeSeatsChange };
 }

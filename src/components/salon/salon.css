@@ -1,3 +1,8 @@
+.salon-container {
+    display: flex;
+    gap: 20px;
+}
+
 .grid-container {
     background-image: url('./wallpaper_interior_08.jpg');
     background-repeat: round;
@@ -67,4 +72,15 @@
     width: 35px;
     border-radius: 50%;
     background-color: red;
+}
+
+.isChange {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+
+.modify_input {
+    display: none;
 }

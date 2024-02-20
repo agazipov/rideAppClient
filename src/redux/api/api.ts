@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IEvent, ILoginForm, IRide, IUserResponse } from "../../type/interface";
+import { IClient, IEvent, ILoginForm, IRide, IUserResponse } from "../../type/interface";
 import { RootState } from "../index";
 
 export const api = createApi({
@@ -59,6 +59,17 @@ export const api = createApi({
                         { type: 'Ride', id: 'LIST' },
                     ]
                     : [{ type: 'Ride', id: 'LIST' }],
+        }),
+
+        getClient:  bilder.query<IClient, IClient>({
+            query: (client) => ({
+                url: 'getclient',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: client
+            })
         }),
 
         addRoute: bilder.mutation<IEvent, IEvent>({
@@ -127,6 +138,7 @@ export const {
     useEntryMutation,
     useGetRouteQuery,
     useGetRideQuery,
+    useGetClientQuery,
     useChangeRideMutation,
     useAddRideMutation,
     useDeleteRideMutation,

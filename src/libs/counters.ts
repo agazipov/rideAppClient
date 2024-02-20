@@ -1,9 +1,10 @@
-import { IPassengers } from "../type/interface";
+import { IClient } from "../type/interface";
 
-export function countFreeSeaats(seats: IPassengers): number {
+export function countFreeSeaats(seats: IClient[]): number {
     let count = 0;
-    Object.values(seats).forEach(seat => {
-        if (seat) count++;
+    seats.forEach(seat => {
+        if (!seat.name) count++;
     });
+    
     return count;
 };

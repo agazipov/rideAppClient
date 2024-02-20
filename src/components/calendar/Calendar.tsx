@@ -1,6 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import ruLocale from '@fullcalendar/core/locales/ru';
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import ModalAddEvent from "../modal/addEvent/ModalAddEvent";
@@ -39,7 +40,7 @@ export default function Calendar() {
             )}
             {data && <FullCalendar
                 plugins={[interactionPlugin, dayGridPlugin]}
-                editable={true}
+                // editable={true}
                 initialDate={initialDate}
                 fixedWeekCount={false}
                 headerToolbar={{
@@ -47,6 +48,7 @@ export default function Calendar() {
                     center: 'title,addEventButton',
                     right: 'dayGridMonth'
                 }}
+                locale={ruLocale}
                 navLinks={true}
                 // navLinkDayClick={(date) => {
                 //     const convertedDate = convertStringToDate(date)

@@ -27,25 +27,28 @@ export interface IRide {
     time: string,
     car: string,
     driver: string,
-    passengers: IPassengers,
+    passengers: IClient[],
     route?: string,
     freeSeats?: number,
 }
 
-export interface IPassengers {
-    [key: string]: boolean,
-
-    left: boolean,
-    right: boolean,
-    mid: boolean,
-    front: boolean,
-}
+export type Position = 'front' | 'right' | 'mid' | 'left'
 
 export interface ILoginForm {
     name: string,
     password: string,
+    session?: boolean,
 }
 
 export interface IUserResponse {
     token: string,
-  }
+}
+
+export interface IClient {
+    id?: string,
+    name: string,
+    phone: string,
+    note?: string,
+    ride?: string[],
+    position: Position,
+}

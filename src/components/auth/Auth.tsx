@@ -15,9 +15,10 @@ export default function Auth() {
     const dispatch = useDispatch();
 
     const onsubmit: SubmitHandler<ILoginForm> = async (data) => {
+        const { name, password, session } = data;
         try {
-            const auth = await login(data).unwrap();
-            window.localStorage.setItem('token', auth.token);
+            const auth = await login({ name, password }).unwrap();
+            session && window.localStorage.setItem('token', auth.token);
             dispatch(setCredentials(auth))
             navigate('/admin');
         } catch (error) {
@@ -37,7 +38,7 @@ export default function Auth() {
                     <Form.Control type="password" placeholder="Пароль" {...register("password")} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Запомнить меня" />
+                    <Form.Check type="checkbox" label="Запомнить меня" {...register("session")} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Войти

@@ -27,7 +27,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
         
     const [updateRide] = useChangeRideMutation();
     const [addRide] = useAddRideMutation();
-    const {salon, setPassenger, freeSeats} = usePassenger(ride?.passengers);
+    const {salon, setPassenger, freeSeatsAdd, freeSeatsChange} = usePassenger(ride?.passengers);
 
     const onSubmit: SubmitHandler<IRide> = (data) => {
         ride ? 
@@ -35,14 +35,14 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                 ...ride, 
                 ...data, 
                 passengers: salon,
-                freeSeats: freeSeats(),
+                freeSeats: freeSeatsChange(),
             })
             :
             addRide({ 
                 ...data, 
                 passengers: salon, 
                 route: event?.id,
-                freeSeats: freeSeats(),
+                freeSeats: freeSeatsAdd(),
             });
         show(false);
     }
