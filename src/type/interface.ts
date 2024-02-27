@@ -19,7 +19,8 @@ export interface IEvent {
     title: string,
     start: Date,
     seats: number,
-    color?: string
+    color?: string,
+    default?: boolean
 }
 
 export interface IRide {
@@ -32,7 +33,7 @@ export interface IRide {
     freeSeats?: number,
 }
 
-export type Position = 'front' | 'right' | 'mid' | 'left'
+export type Position = 'front' | 'left' | 'mid' | 'right'
 
 export interface ILoginForm {
     name: string,

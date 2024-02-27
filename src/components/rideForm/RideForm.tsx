@@ -2,11 +2,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IEvent, IRide } from '../../type/interface';
+import { IEvent, IRide, Position } from '../../type/interface';
 import { useAddRideMutation, useChangeRideMutation, useGetRouteState } from '../../redux/api/api';
 import Salon from '../salon/Salon';
 import './rideForm.css'
 import { usePassenger } from '../../hooks/usePassenger';
+import { Row, Col } from 'react-bootstrap';
+import PassengerContainer from '../passengerContainer/PassengerContainer';
+import Passenger from '../passenger/Passenger';
+
+const SALON_STATE: Position[] = ['front', 'left', 'mid', 'right']
 
 interface IRideComponent {
     show: (e: boolean) => void,
@@ -24,23 +29,23 @@ export function RideForm({ show, ride, event }: IRideComponent) {
             passengers: ride?.passengers
         }
     });
-        
+
     const [updateRide] = useChangeRideMutation();
     const [addRide] = useAddRideMutation();
-    const {salon, setPassenger, freeSeatsAdd, freeSeatsChange} = usePassenger(ride?.passengers);
+    const { salon, setPassenger, freeSeatsAdd, freeSeatsChange } = usePassenger(ride?.passengers);
 
     const onSubmit: SubmitHandler<IRide> = (data) => {
-        ride ? 
-            updateRide({ 
-                ...ride, 
-                ...data, 
+        ride ?
+            updateRide({
+                ...ride,
+                ...data,
                 passengers: salon,
                 freeSeats: freeSeatsChange(),
             })
             :
-            addRide({ 
-                ...data, 
-                passengers: salon, 
+            addRide({
+                ...data,
+                passengers: salon,
                 route: event?.id,
                 freeSeats: freeSeatsAdd(),
             });
@@ -49,9 +54,10 @@ export function RideForm({ show, ride, event }: IRideComponent) {
 
     return (
         <div className="rideForm">
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className="mb-3">
-                    <InputGroup className="mb-3">
+            <Form onSubmit={handleSubmit(onSubmit)} className="rideForm_ride">
+                <Form.Group className="mb-3" as={Col}>
+                    <h4>Поездка</h4>
+                    <InputGroup className="mb-3" size="sm">
                         <InputGroup.Text id="basic-addon1">Время</InputGroup.Text>
                         <Form.Control
                             {...register("time")}
@@ -59,7 +65,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                             aria-describedby="basic-addon1"
                         />
                     </InputGroup>
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-3" size="sm">
                         <InputGroup.Text id="basic-addon2">Водитель</InputGroup.Text>
                         <Form.Control
                             {...register("driver")}
@@ -67,7 +73,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                             aria-describedby="basic-addon2"
                         />
                     </InputGroup>
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-3" size="sm">
                         <InputGroup.Text id="basic-addon3">Машина</InputGroup.Text>
                         <Form.Control
                             {...register("car")}
@@ -75,20 +81,22 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                             aria-describedby="basic-addon3"
                         />
                     </InputGroup>
-                    {/* <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon4">Места</InputGroup.Text>
-                        <Form.Control
-                            {...register("passengers")}
-                            placeholder="5"
-                            aria-describedby="basic-addon4"
-                        />
-                    </InputGroup> */}
                 </Form.Group>
+
                 <Button variant="primary" type="submit">
                     Сохранить
                 </Button>
             </Form>
-            <Salon passengers={salon} setPassenger={setPassenger}/>
+            {/* <div className="rideForm_passenger">
+                <h4>Пассажиры</h4>
+                {salon.map((passenger, index) => {
+                    return (
+                        <PassengerContainer passenger={passenger} setPassenger={setPassenger} key={index} />
+                    )
+                })}
+            </div> */}
+            <Passenger client={salon} setPassenger={setPassenger}/>
+            {/* <Salon passengers={salon} /> */}
         </div>
     )
 }

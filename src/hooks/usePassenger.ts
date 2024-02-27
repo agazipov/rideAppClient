@@ -10,7 +10,7 @@ const defaultValue: IClient[] = [
         phone: '',
     },
     {
-        position: 'right',
+        position: 'left',
         name: '',
         phone: '',
     },
@@ -20,7 +20,7 @@ const defaultValue: IClient[] = [
         phone: '',
     },
     {
-        position: 'left',
+        position: 'right',
         name: '',
         phone: '',
     }
@@ -46,6 +46,8 @@ export function usePassenger(passengers: IClient[] = defaultValue) {
     const freeSeatsChange = useCallback(() => {
         return countFreeSeaats(salon) - defaultFreeSeats;
     }, [salon, defaultFreeSeats]);
+    console.log('salon', salon);
+    
 
     return { salon, setPassenger, freeSeatsAdd, freeSeatsChange };
 }

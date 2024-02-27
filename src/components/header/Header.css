@@ -1,0 +1,14 @@
+.header {
+    width: 100%;
+
+    margin-top: 30px;
+
+    background-color: gainsboro;
+    
+    border-bottom: 3px solid black;
+    border-radius: 16px;
+}
+
+.header__container {
+    padding: 20px;
+}

@@ -19,6 +19,7 @@ export default function ModalClickEvent({
   const handleClose = () => setShow(null);
 
   const { data: rides } = useGetRideQuery(event.event.id);
+  
   const [deleteRoute] = useDeleteRouteMutation();
   // получаю евент из стейта
   const { data } = useGetRouteState();
@@ -27,7 +28,7 @@ export default function ModalClickEvent({
   return (
     <>
       {rides && findEvent &&
-        <Modal show={!!rides} onHide={handleClose} fullscreen='lg-down'>
+        <Modal show={!!rides} onHide={handleClose} fullscreen='xxl-down'>
           <Modal.Header closeButton>
             <Modal.Title>
               Маршрут {findEvent.title} / {findEvent.seats !== 0 ? findEvent.seats : 'нет мест'} от {findEvent.start.toString()}

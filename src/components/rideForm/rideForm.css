@@ -1,4 +1,12 @@
 .rideForm {
     display: flex;
-    gap: 20px;
+    gap: 14px;
+}
+
+.rideForm_ride {
+    min-width: 180px;
+}
+
+.rideForm_passenger {
+    min-width: 230px;
 }

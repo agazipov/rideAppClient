@@ -1,0 +1,33 @@
+.calendar {
+    width: 100%;
+    /* max-width: 900px; */
+
+    background-color: gainsboro;
+
+    border-bottom: 3px solid black;
+    border-radius: 16px;
+}
+
+.calendar__container {
+    padding: 36px;
+
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 20px;
+}
+
+.calendar__info {
+    width: 440px;
+}
+
+.calendar__body {
+    width: 100%;
+    /* max-width: 700px; */
+}
+
+@media(max-width: 1200px) {
+    .calendar__container {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,16 @@
+.description {
+    max-width: 1024px;
+
+    background-color: gainsboro;
+
+    border-bottom: 3px solid black;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.description__container {
+    padding: 36px;
+}

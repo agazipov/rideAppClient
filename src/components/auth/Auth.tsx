@@ -27,7 +27,7 @@ export default function Auth() {
     };
 
     return (
-        <div className='container'>
+        <div className='auth'>
             <Form onSubmit={handleSubmit(onsubmit)} autoComplete="off">
                 <Form.Group className="mb-3" controlId="formBasicLogin">
                     <Form.Label>Логин</Form.Label>

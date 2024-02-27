@@ -7,6 +7,7 @@ import { useDeleteRideMutation } from "../../redux/api/api";
 import Salon from "../salon/Salon";
 import { countFreeSeaats } from "../../libs/counters";
 import { useAuth } from "../../hooks/useAuth";
+import Passenger from "../passenger/Passenger";
 
 interface IRideComponent {
     ride: IRide,
@@ -21,7 +22,7 @@ export function RideContainer({ ride, event }: IRideComponent) {
     return (
         <div className="ride">
             {isSetting ?
-                <RideForm show={setIsSetting} ride={ride} event={event}/> 
+                <RideForm show={setIsSetting} ride={ride} event={event} />
                 :
                 <div className="rideListContainer">
                     <ul>
@@ -30,7 +31,8 @@ export function RideContainer({ ride, event }: IRideComponent) {
                         <li>Машина: {ride.car}</li>
                         <li>Свободные места: {countFreeSeaats(ride.passengers)}</li>
                     </ul>
-                    <Salon passengers={ride.passengers} />
+                    {!auth.token && <Salon passengers={ride.passengers} />}
+                    {/* <Passenger client={ride.passengers} /> */}
                 </div>
             }
             {auth.token && <div className="btnGroup">
@@ -41,7 +43,7 @@ export function RideContainer({ ride, event }: IRideComponent) {
                     {isSetting ? 'Не менять' : 'Изменить'}
                 </Button>
                 <Button
-                    onClick={() => deleteRide({...ride, freeSeats: -countFreeSeaats(ride.passengers)})}
+                    onClick={() => deleteRide({ ...ride, freeSeats: -countFreeSeaats(ride.passengers) })}
                     variant="danger"
                 >
                     Удалить поездку

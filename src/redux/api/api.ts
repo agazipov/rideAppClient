@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IClient, IEvent, ILoginForm, IRide, IUserResponse } from "../../type/interface";
 import { RootState } from "../index";
 
+interface ICustErr {
+    message: string
+}
+
 export const api = createApi({
     reducerPath: 'calendar',
     tagTypes: ['Route', 'Ride'],
@@ -61,14 +65,20 @@ export const api = createApi({
                     : [{ type: 'Ride', id: 'LIST' }],
         }),
 
-        getClient:  bilder.query<IClient, IClient>({
-            query: (client) => ({
+        getClient: bilder.query<IClient & ICustErr, IClient>({
+            query: (phone) => ({
                 url: 'getclient',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: client
+                body: phone,
+                validateStatus: (response, result) =>
+                    // response.status === 204 && !result.isError
+                    {if (response.status === 204) {
+                        const result = {test: 'test'}
+                        return 'result' 
+                    } else return result}
             })
         }),
 
@@ -138,7 +148,7 @@ export const {
     useEntryMutation,
     useGetRouteQuery,
     useGetRideQuery,
-    useGetClientQuery,
+    useLazyGetClientQuery,
     useChangeRideMutation,
     useAddRideMutation,
     useDeleteRideMutation,
