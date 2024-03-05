@@ -8,7 +8,12 @@
     border-radius: 16px;
 }
 
-.calendar__container {
+.calendar__header {
+    padding-top: 14px;
+    text-align: center;
+}
+
+.calendar__body {
     padding: 36px;
 
     display: flex;
@@ -17,11 +22,7 @@
     gap: 20px;
 }
 
-.calendar__info {
-    width: 440px;
-}
-
-.calendar__body {
+.calendar__fullCalendar {
     width: 100%;
     /* max-width: 700px; */
 }

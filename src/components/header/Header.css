@@ -1,14 +1,29 @@
 .header {
     width: 100%;
 
-    margin-top: 30px;
+    /* margin-top: 30px; */
 
     background-color: gainsboro;
     
     border-bottom: 3px solid black;
-    border-radius: 16px;
+    /* border-radius: 16px; */
 }
 
 .header__container {
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__quote {
+    text-align: end;
+}
+
+q {
+    font-style: italic;
+}
+
+h1 {
+    font-weight: 700;
+    color: cornflowerblue;
 }

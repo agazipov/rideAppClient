@@ -6,8 +6,8 @@ export default function Footer() {
             <div className='footer__link'>
                 <p>Присоединяйтесь к нам в социальных сетях</p>
                 <div className='footer__link_a'>
-                    <a href="https://vk.com/poezdki_satka" target="_blank">Вконтакте</a>
-                    <a href="https://t.me/+gJWC4yA0Vu05NDIy" target="_blank">Телеграм</a>
+                    <a href="https://vk.com/poezdki_satka" target="_blank" rel="noreferrer">Вконтакте</a>
+                    <a href="https://t.me/+gJWC4yA0Vu05NDIy" target="_blank" rel="noreferrer">Телеграм</a>
                 </div>
             </div>
         </footer>

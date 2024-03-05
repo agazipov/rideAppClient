@@ -1,0 +1,16 @@
+.speedy {
+    width: 100px;
+    height: 70px;
+    border: 2px solid black;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.arrow {
+    position: relative;
+    background-image: linear-gradient(to right, black 50%, rgb(0 0 0 / 0) 50% 50%);
+    width: 96px;
+    height: 8px;
+    top: 50px;
+}

@@ -8,9 +8,6 @@ p {
 
     background-color: gainsboro;
 
-    margin-bottom: 24px;
-
-    border-radius: 16px;
     border-top: 3px solid black;
 
     display: flex;

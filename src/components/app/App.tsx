@@ -3,12 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Auth from "../auth/Auth";
 import AdminPage from "../admin/Admin";
 import { PrivateOutlet } from "../outlet/Outlet";
-import MainPage from "../main/MainPage";
+import ProviderWrapper from "../../context/ProviderWrapper";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage />
+    element: <ProviderWrapper />
   },
   {
     path: "/login",

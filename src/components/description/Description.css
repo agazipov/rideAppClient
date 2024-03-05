@@ -1,16 +1,44 @@
 .description {
-    max-width: 1024px;
+    width: 100%;
+}
+
+.description__body {
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.description__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 44px;
+    grid-row-gap: 44px;
+}
+
+.description__section {
+    padding: 14px;
 
     background-color: gainsboro;
 
     border-bottom: 3px solid black;
     border-radius: 16px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
-.description__container {
-    padding: 36px;
+.description__about {
+    position: relative;
+}
+
+.description__img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+@media(max-width: 1200px) {
+    .description__img {
+        display: none;
+    }
 }
