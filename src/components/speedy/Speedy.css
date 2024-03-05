@@ -1,7 +1,11 @@
 .speedy {
-    width: 100px;
+    z-index: 15;
+    width: 116px;
     height: 70px;
+    background-image: url('./speedo.png');
+    background-repeat: round;
     border: 2px solid black;
+    border-radius: 10px;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -9,8 +13,16 @@
 
 .arrow {
     position: relative;
-    background-image: linear-gradient(to right, black 50%, rgb(0 0 0 / 0) 50% 50%);
+    background-image: url('./arrow.png');
+    background-repeat: round;
     width: 96px;
-    height: 8px;
+    height: 12px;
     top: 50px;
+    left: 8px;
+}
+
+@media (hover: none), (hover: on-demand), (-moz-touch-enabled: 1), (pointer:coarse) {
+    .speedy {
+        display: none;
+    }
 }

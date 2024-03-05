@@ -32,41 +32,44 @@ export default function Description() {
                         <img src={stetemImg} alt="background__img" width={420} />
                     </div>
                 </div>
-                <div className="description__tabs">
-                    <div className="description__section">
-                        <h4>Пунктуальность</h4>
-                        <p>
-                            Всегда во время
-                        </p>
-                    </div>
-                    <div className="description__section">
-                        <h4>Опыт</h4>
-                        <p>
-                            Работаем в сегменте Ride-sharing Servis более 5 лет
-                        </p>
-                    </div>
-                    <div className="description__section">
-                        <h4>Доверие</h4>
-                        <p>
-                            70 тыс. пассажиров воспользовались нашим сервисом
-                        </p>
-                    </div>
-                    <div className="description__section">
-                        <h4>Безопасность</h4>
-                        <p>
-                            Есть ремень безопасности
-                        </p>
-                    </div>
-                    <div className="description__section">
-                        <h4>Комфорт и т.д.</h4>
-                        <p>
-                            В любую погоду вашей жопке будет уютно
-                        </p>
-                    </div>
-                    <div className="description__section">
-                        <p>
-                            Что-то еще
-                        </p>
+                <div className='description__services'>
+                    <h2>Наши принципы</h2>
+                    <div className="description__tabs">
+                        <div className="description__section">
+                            <h4>Пунктуальность</h4>
+                            <p>
+                                С нами легко планировать свой день, ведь мы всегда довезем вас во время
+                            </p>
+                        </div>
+                        <div className="description__section">
+                            <h4>Опыт</h4>
+                            <p>
+                                Мы работаем в сегменте Ride-sharing Servis уже более 5 лет
+                            </p>
+                        </div>
+                        <div className="description__section">
+                            <h4>Доверие</h4>
+                            <p>
+                                Более 70 тысяч пассажиров воспользовались нашим сервисом
+                            </p>
+                        </div>
+                        <div className="description__section">
+                            <h4>Безопасность</h4>
+                            <p>
+                                У наших водителей большой опыт, а автомобили проходят ТО перед каждой поездкой
+                            </p>
+                        </div>
+                        <div className="description__section">
+                            <h4>Комфорт</h4>
+                            <p>
+                                К вашим услугам уютный салон автомобилей класса Comfort
+                            </p>
+                        </div>
+                        <div className="description__section">
+                            <p>
+                                Что-то еще
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

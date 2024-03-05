@@ -1,0 +1,14 @@
+.infoPanel {
+    padding: 20px;
+
+    background-color: #dcdcdccc;
+
+    border-bottom: 3px solid black;
+    border-radius: 16px;
+}
+
+@media(max-width: 1200px) {
+    .infoPanel {
+        display: none;
+    }
+}

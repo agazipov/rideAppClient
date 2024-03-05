@@ -3,10 +3,11 @@ p {
 }
 
 .footer {
+    z-index: 10;
     width: 100%;
     min-height: 96px;
 
-    background-color: gainsboro;
+    background-color: #dcdcdccc;
 
     border-top: 3px solid black;
 

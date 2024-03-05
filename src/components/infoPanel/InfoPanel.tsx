@@ -1,6 +1,8 @@
+import './InfoPanel.css'
+
 export default function InfoPanel() {
     return (
-        <div style={{width: '440px'}}>
+        <div className="infoPanel">
             <p>Для получения детальной информации шелкните на интересующем вас маршруте.</p>
             <br />
             <p>Индекс Бак-Чел/Чел-Бак обозначает направление маршрута: <br />
