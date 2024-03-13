@@ -31,9 +31,9 @@
     align-items: center;
 }
 
-.description__services h2 {
+/* .description__services h2 {
     color: gainsboro;
-}
+} */
 
 .description__tabs {
     display: grid;

@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 import { useSetMouseMove } from "../../context/mouseMove";
 import Calendar from "../calendar/Calendar";
 import Description from "../description/Description";
@@ -6,19 +6,19 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import Speedy from "../speedy/Speedy";
 import './MainPage.css'
-import Background from "../Background/Background";
+import Background from "../background/Background";
 
 export default function MainPage() {
+    const mainRef = useRef(null!);
     const setMouseMove = useSetMouseMove();
 
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
-        // console.log(event.movementX);
         setMouseMove({ x: event.movementX, y: event.movementY });
     };
 
     return (
-        <div className="main" onMouseMove={handleMouseMove}>
-            <Background />
+        <div className="main" onMouseMove={handleMouseMove} ref={mainRef}>
+            <Background scrollContainer={mainRef.current}/>
             <Header />
             <Description />
             <Calendar isAdmin={false} />
