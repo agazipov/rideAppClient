@@ -6,19 +6,26 @@ import { IClient } from "../../type/interface";
 import { POSITION_KEY, TABLE_HEANDING } from '../../libs/constant';
 import PassengerContainer from '../passengerContainer/PassengerContainer';
 import { SubmitHandler } from 'react-hook-form';
+import PassengerControl from '../passengerControl/PassengerControl';
 
 interface IPassengerComponent {
-	client: IClient[],
+	clients: IClient[],
 	setPassenger: SubmitHandler<IClient>,
 }
 
-export default function Passenger({ client, setPassenger }: IPassengerComponent) {
-	const [settingForm, setSettingForm] = useState<IClient | null>(null);
+const RESET_CLIENT: IClient = {
+	position: 'front',
+	name: '',
+	phone: '',
+}
 
-	// убирает форму при изминении полей
+export default function Passenger({ clients, setPassenger }: IPassengerComponent) {
+	const [settingForm, setSettingForm] = useState<IClient | null>(null);
+	
+	// убирает форму при изменении полей
 	useEffect(() => {
 		setSettingForm(null);
-	}, [client]);
+	}, [clients]);
 
 	const handleSetting = (client: IClient) => {		
 		if (settingForm && client.position === settingForm.position) {
@@ -41,21 +48,21 @@ export default function Passenger({ client, setPassenger }: IPassengerComponent)
 					</tr>
 				</thead>
 				<tbody>
-					{client.map((seat, index) => {
+					{clients.map((client, index) => {
 						return (
 							<tr key={index}>
 								<td>{index + 1}</td>
-								<td>{POSITION_KEY[seat.position]}</td>
-								<td>{seat.name}</td>
-								<td>{seat.phone}</td>
+								<td>{POSITION_KEY[client.position]}</td>
+								<td>{client.name}</td>
+								<td>{client.phone}</td>
 								<td>
 									<ButtonGroup size="sm">
-										{(seat.name && seat.phone) ?
-											<Button variant="warning" onClick={() => handleSetting(seat)}>chg</Button>
+										{(client.name && client.phone) ?
+											// <Button variant="warning" onClick={() => handleSetting(client)}>chg</Button>
+											<Button variant="danger" onClick={() => setPassenger({...RESET_CLIENT, position: client.position})}>Удалить</Button>
 											:
-											<Button variant="success" onClick={() => handleSetting(seat)}>add</Button>
+											<Button variant="success" onClick={() => handleSetting(client)}>Добавить</Button>
 										}
-										<Button variant="danger" onClick={() => { }}>del</Button>
 									</ButtonGroup>
 								</td>
 							</tr>
@@ -63,8 +70,11 @@ export default function Passenger({ client, setPassenger }: IPassengerComponent)
 					})}
 				</tbody>
 			</Table>
-			{settingForm &&
+			{/* {settingForm &&
 				<PassengerContainer key={settingForm.position} passenger={settingForm} setPassenger={setPassenger} />
+			} */}
+			{settingForm &&
+				<PassengerControl key={settingForm.position} passenger={settingForm} setPassenger={setPassenger} />
 			}
 		</div>
 	)

@@ -6,7 +6,6 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IClient, Position } from '../../type/interface';
-import { useLazyGetClientQuery } from '../../redux/api/api';
 import AddPassenger from '../addPassenger/AddPassenger';
 import FindPassenger from '../findPassenger/FindPassenger';
 

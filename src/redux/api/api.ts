@@ -2,13 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IClient, IEvent, ILoginForm, IRide, IUserResponse } from "../../type/interface";
 import { RootState } from "../index";
 
-interface ICustErr {
+interface ICustomErr {
     message: string
 }
 
 export const api = createApi({
     reducerPath: 'calendar',
-    tagTypes: ['Route', 'Ride'],
+    tagTypes: ['Route', 'Ride', 'Client'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5000/api/',
         prepareHeaders: (headers, { getState }) => {
@@ -65,7 +65,24 @@ export const api = createApi({
                     : [{ type: 'Ride', id: 'LIST' }],
         }),
 
-        getClient: bilder.query<IClient & ICustErr, IClient>({
+        getClients: bilder.query<IClient[], void>({
+            query: () => ({
+                url: 'clients',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.map(({ id }) => ({ type: 'Client' as const, id })),
+                        { type: 'Client', id: 'LIST' },
+                    ]
+                    : [{ type: 'Client', id: 'LIST' }],
+        }),
+
+        getClientByPhone: bilder.query<IClient & ICustomErr, IClient>({
             query: (phone) => ({
                 url: 'getclient',
                 method: 'POST',
@@ -73,12 +90,6 @@ export const api = createApi({
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: phone,
-                validateStatus: (response, result) =>
-                    // response.status === 204 && !result.isError
-                    {if (response.status === 204) {
-                        const result = {test: 'test'}
-                        return 'result' 
-                    } else return result}
             })
         }),
 
@@ -148,7 +159,8 @@ export const {
     useEntryMutation,
     useGetRouteQuery,
     useGetRideQuery,
-    useLazyGetClientQuery,
+    useLazyGetClientByPhoneQuery,
+    useGetClientsQuery,
     useChangeRideMutation,
     useAddRideMutation,
     useDeleteRideMutation,

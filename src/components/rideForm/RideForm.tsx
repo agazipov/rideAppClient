@@ -9,7 +9,7 @@ import './rideForm.css'
 import { usePassenger } from '../../hooks/usePassenger';
 import { Row, Col } from 'react-bootstrap';
 import PassengerContainer from '../passengerContainer/PassengerContainer';
-import Passenger from '../passenger/Passenger';
+import Passengers from '../passengers/Passengers';
 
 const SALON_STATE: Position[] = ['front', 'left', 'mid', 'right']
 
@@ -95,7 +95,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                     )
                 })}
             </div> */}
-            <Passenger client={salon} setPassenger={setPassenger}/>
+            <Passengers clients={salon} setPassenger={setPassenger}/>
             {/* <Salon passengers={salon} /> */}
         </div>
     )

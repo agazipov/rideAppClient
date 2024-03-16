@@ -7,7 +7,7 @@ import { useDeleteRideMutation } from "../../redux/api/api";
 import Salon from "../salon/Salon";
 import { countFreeSeaats } from "../../libs/counters";
 import { useAuth } from "../../hooks/useAuth";
-import Passenger from "../passenger/Passenger";
+import Passenger from "../passengers/Passengers";
 
 interface IRideComponent {
     ride: IRide,

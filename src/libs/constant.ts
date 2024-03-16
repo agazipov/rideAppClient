@@ -4,4 +4,4 @@ export const POSITION_KEY = {
     left: 'Слева',
     mid: 'Центр',
     right: 'Справа',
-} 
+};

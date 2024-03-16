@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IClient, Position } from '../../type/interface';
-import { useLazyGetClientQuery } from '../../redux/api/api';
+import { useLazyGetClientByPhoneQuery } from '../../redux/api/api';
 import { POSITION_KEY } from '../../libs/constant';
 
 interface IPassengerComponent {
@@ -15,12 +15,11 @@ interface IPassengerComponent {
 
 export default function FindPassenger({ position, setPassenger }: IPassengerComponent) {
     const { register, handleSubmit, setValue } = useForm<IClient>();
-    const [getPhone, { data, isLoading, isError, error }] = useLazyGetClientQuery();
+    const [getPhone, { data, isLoading, isError, error }] = useLazyGetClientByPhoneQuery();
     const [isFind, setIsFind] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<IClient> = async (data) => {
         try {
-            // хуйня только для чтения, поэтому копирую в новый объект
             const response = await getPhone(data).unwrap();
             if (response.message === 'dont client') {
                 setIsFind(true);

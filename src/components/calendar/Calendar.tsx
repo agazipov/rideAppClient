@@ -19,7 +19,7 @@ interface ICalendarComponent {
     isAdmin: boolean
 }
 
-export default function Calendar({isAdmin}: ICalendarComponent) {   
+export default function Calendar({ isAdmin }: ICalendarComponent) {
     const [showModalAddEvent, setShowModalAddEvent] = useState<boolean>(false);
     const [showModalClickEvent, setShowModalClickEvent] = useState<EventClickArg | null>(null);
 
@@ -31,7 +31,9 @@ export default function Calendar({isAdmin}: ICalendarComponent) {
                 <h3>Доступные  маршруты и свободные места</h3>
             </div>
             <div className="calendar__body">
-                <InfoPanel />
+                {!isAdmin &&
+                    <InfoPanel />
+                }
                 {data &&
                     <div className="calendar__fullCalendar">
                         <FullCalendar
