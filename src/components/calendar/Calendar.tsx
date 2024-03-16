@@ -19,7 +19,7 @@ interface ICalendarComponent {
     isAdmin: boolean
 }
 
-export default function Calendar(isAdmin: ICalendarComponent) {
+export default function Calendar({isAdmin}: ICalendarComponent) {   
     const [showModalAddEvent, setShowModalAddEvent] = useState<boolean>(false);
     const [showModalClickEvent, setShowModalClickEvent] = useState<EventClickArg | null>(null);
 
@@ -48,7 +48,7 @@ export default function Calendar(isAdmin: ICalendarComponent) {
                             headerToolbar={{
                                 left: 'prev,next today',
                                 center: 'title',
-                                right: !isAdmin ? 'addEventButton' : ''
+                                right: isAdmin ? 'addEventButton' : ''
                                 // 'dayGridMonth'
                             }}
                             locale={ruLocale}
@@ -60,7 +60,7 @@ export default function Calendar(isAdmin: ICalendarComponent) {
                                 addEventButton: {
                                     text: 'Добавить поезку',
                                     click: () => setShowModalAddEvent(!showModalAddEvent)
-                                }
+                                },
                             }}
                         />
                     </div>

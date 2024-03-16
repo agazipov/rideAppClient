@@ -18,7 +18,6 @@ export default function FindPassenger({ position, setPassenger }: IPassengerComp
     const [getPhone, { data, isLoading, isError, error }] = useLazyGetClientQuery();
     const [isFind, setIsFind] = useState<boolean>(false);
 
-    
     const onSubmit: SubmitHandler<IClient> = async (data) => {
         try {
             // хуйня только для чтения, поэтому копирую в новый объект
@@ -26,7 +25,7 @@ export default function FindPassenger({ position, setPassenger }: IPassengerComp
             if (response.message === 'dont client') {
                 setIsFind(true);
             } else {
-                const copyResponse = {...response, position }
+                const copyResponse = { ...response, position }
                 setPassenger(copyResponse);
                 setIsFind(false);
             }
@@ -37,22 +36,22 @@ export default function FindPassenger({ position, setPassenger }: IPassengerComp
 
     return (
         <>
-            {isFind && 
+            {isFind &&
                 <div>Пассажир не найден</div>
             }
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                    <span>Ведите номер телефона</span>
-                    <InputGroup className="mb-3" size="sm">
-                        <InputGroup.Text id={position}>{POSITION_KEY[position]}</InputGroup.Text>
-                        <Form.Control
-                            {...register("phone")}
-                            aria-describedby={position}
-                        />
-                        <Button variant="primary" type="submit">
-                            Найти
-                        </Button>
-                    </InputGroup>
-                </Form>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <span>Ведите номер телефона</span>
+                <InputGroup className="mb-3" size="sm">
+                    <InputGroup.Text id={position}>{POSITION_KEY[position]}</InputGroup.Text>
+                    <Form.Control
+                        {...register("phone")}
+                        aria-describedby={position}
+                    />
+                    <Button variant="primary" type="submit">
+                        Найти
+                    </Button>
+                </InputGroup>
+            </Form>
         </>
     )
 }
