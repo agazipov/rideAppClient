@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import { useForm, SubmitHandler } from "react-hook-form";
-import { IClient, Position } from '../../type/interface';
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { IClient } from '../../type/interface';
 import { useLazyGetClientByPhoneQuery } from '../../redux/api/api';
 import { POSITION_KEY } from '../../libs/constant';
+import { InputMask, useMask } from '@react-input/mask';
 
 interface IPassengerComponent {
     passenger: IClient,
@@ -13,7 +14,7 @@ interface IPassengerComponent {
 }
 
 export default function PassengerControl({ passenger, setPassenger }: IPassengerComponent) {
-    const { register, handleSubmit, setValue } = useForm<IClient>({
+    const { register, handleSubmit, control } = useForm<IClient>({
         defaultValues: passenger
     });
     const [getPhone, { data, isLoading, isError, error }] = useLazyGetClientByPhoneQuery(); // api для запроса по событию
@@ -34,41 +35,55 @@ export default function PassengerControl({ passenger, setPassenger }: IPassenger
         }
     };
 
-    return (
-        <>
-            <Form onSubmit={!isFind ? handleSubmit(onSubmit) : handleSubmit(setPassenger)}>
-                {isFind ?
-                    <span>Пассажир не найден. Добавте нового.</span>
-                    :
-                    <span>Ведите номер телефона</span>
+    const inputRef = useMask({
+        mask: "+7 (___) ___-__-__",
+        replacement: { _: /\d/ },
+        showMask: true,
+    });
+
+return (
+    <>
+        <Form onSubmit={!isFind ? handleSubmit(onSubmit) : handleSubmit(setPassenger)} style={{width: '100%'}}>
+            {isFind ?
+                <span>Пассажир не найден. Добавте нового.</span>
+                :
+                <span>Ведите номер телефона</span>
+            }
+            <InputGroup className="mb-3" size="sm">
+                <InputGroup.Text id={passenger.position}>{POSITION_KEY[passenger.position]}</InputGroup.Text>
+                <Controller
+                    control={control}
+                    name="phone"
+                    render={({ field }) => (
+                        <Form.Control
+                            {...field}
+                            ref={inputRef}
+                            placeholder="+7 (___) ___-__-__"
+                            aria-describedby={passenger.position}
+                        />
+                    )}
+                />
+                {!isFind &&
+                    <Button variant="primary" type="submit">
+                        Найти
+                    </Button>
                 }
-                <InputGroup className="mb-3" size="sm">
-                    <InputGroup.Text id={passenger.position}>{POSITION_KEY[passenger.position]}</InputGroup.Text>
-                    <Form.Control
-                        {...register("phone")}
-                        aria-describedby={passenger.position}
-                    />
-                    {!isFind &&
-                        <Button variant="primary" type="submit">
-                            Найти
-                        </Button>
-                    }
-                </InputGroup>
-                {isFind &&
-                    <>
-                        <InputGroup className="mb-3" size="sm">
-                            <InputGroup.Text id="position_name">Имя</InputGroup.Text>
-                            <Form.Control
-                                {...register("name")}
-                                aria-describedby="position_name"
-                            />
-                        </InputGroup>
-                        <Button variant="primary" type="submit">
-                            Добавить
-                        </Button>
-                    </>
-                }
-            </Form>
-        </>
-    )
+            </InputGroup>
+            {isFind &&
+                <>
+                    <InputGroup className="mb-3" size="sm">
+                        <InputGroup.Text id="position_name">Имя</InputGroup.Text>
+                        <Form.Control
+                            {...register("name")}
+                            aria-describedby="position_name"
+                        />
+                    </InputGroup>
+                    <Button variant="primary" type="submit">
+                        Добавить
+                    </Button>
+                </>
+            }
+        </Form>
+    </>
+)
 }

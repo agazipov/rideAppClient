@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IClient, IEvent, ILoginForm, IRide, IUserResponse } from "../../type/interface";
+import { IClient, IEvent, ILoginForm, IRide, IUserResponse, ListResponse } from "../../type/interface";
 import { RootState } from "../index";
 
 interface ICustomErr {
@@ -65,21 +65,22 @@ export const api = createApi({
                     : [{ type: 'Ride', id: 'LIST' }],
         }),
 
-        getClients: bilder.query<IClient[], void>({
-            query: () => ({
+        getClients: bilder.query<ListResponse<IClient>, number>({
+            query: (pageNumber = 1) => ({
                 url: 'clients',
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
+                body: {page: pageNumber}
             }),
-            providesTags: (result) =>
-                result
-                    ? [
-                        ...result.map(({ id }) => ({ type: 'Client' as const, id })),
-                        { type: 'Client', id: 'LIST' },
-                    ]
-                    : [{ type: 'Client', id: 'LIST' }],
+            // providesTags: (result) =>
+            //     result
+            //         ? [
+            //             ...result.map(({ id }) => ({ type: 'Client' as const, id })),
+            //             { type: 'Client', id: 'LIST' },
+            //         ]
+            //         : [{ type: 'Client', id: 'LIST' }],
         }),
 
         getClientByPhone: bilder.query<IClient & ICustomErr, IClient>({

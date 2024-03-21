@@ -53,3 +53,9 @@ export interface IClient {
     ride?: string[],
     position: Position,
 }
+
+export interface ListResponse<T> {
+    totalPages: number,
+    page: number,
+    content: T[]
+}

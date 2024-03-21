@@ -8,6 +8,8 @@ import PassengerContainer from '../passengerContainer/PassengerContainer';
 import { SubmitHandler } from 'react-hook-form';
 import PassengerControl from '../passengerControl/PassengerControl';
 
+import './Passenger.css';
+
 interface IPassengerComponent {
 	clients: IClient[],
 	setPassenger: SubmitHandler<IClient>,
@@ -37,7 +39,7 @@ export default function Passenger({ clients, setPassenger }: IPassengerComponent
 
 	return (
 		<div style={{ display: 'flex', gap: '10px' }}>
-			<Table size="sm">
+			<Table size="sm" className='passenger__table'>
 				<thead>
 					<tr>
 						<th>#</th>

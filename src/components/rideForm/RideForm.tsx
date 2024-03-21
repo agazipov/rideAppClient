@@ -61,7 +61,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                         <InputGroup.Text id="basic-addon1">Время</InputGroup.Text>
                         <Form.Control
                             {...register("time")}
-                            placeholder="morning"
+                            placeholder="Время поездки"
                             aria-describedby="basic-addon1"
                         />
                     </InputGroup>
@@ -69,7 +69,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                         <InputGroup.Text id="basic-addon2">Водитель</InputGroup.Text>
                         <Form.Control
                             {...register("driver")}
-                            placeholder="ivan"
+                            placeholder="Водитель"
                             aria-describedby="basic-addon2"
                         />
                     </InputGroup>
@@ -77,7 +77,7 @@ export function RideForm({ show, ride, event }: IRideComponent) {
                         <InputGroup.Text id="basic-addon3">Машина</InputGroup.Text>
                         <Form.Control
                             {...register("car")}
-                            placeholder="pejo"
+                            placeholder="Машина"
                             aria-describedby="basic-addon3"
                         />
                     </InputGroup>
