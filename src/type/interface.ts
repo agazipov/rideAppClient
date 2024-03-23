@@ -57,5 +57,7 @@ export interface IClient {
 export interface ListResponse<T> {
     totalPages: number,
     page: number,
+    nextPage: number | null,
+    prevPage: number | null,
     content: T[]
 }

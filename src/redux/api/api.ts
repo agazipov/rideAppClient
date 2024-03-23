@@ -65,22 +65,15 @@ export const api = createApi({
                     : [{ type: 'Ride', id: 'LIST' }],
         }),
 
-        getClients: bilder.query<ListResponse<IClient>, number>({
-            query: (pageNumber = 1) => ({
-                url: 'clients',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: {page: pageNumber}
-            }),
-            // providesTags: (result) =>
-            //     result
-            //         ? [
-            //             ...result.map(({ id }) => ({ type: 'Client' as const, id })),
-            //             { type: 'Client', id: 'LIST' },
-            //         ]
-            //         : [{ type: 'Client', id: 'LIST' }],
+        getClients: bilder.query<ListResponse<IClient>, number | void>({
+            query: (pageNumber = 1) => `clients?page=${pageNumber}`,
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.content.map(({ id }) => ({ type: 'Client' as const, id })),
+                        { type: 'Client', id: 'LIST' },
+                    ]
+                    : [{ type: 'Client', id: 'LIST' }],
         }),
 
         getClientByPhone: bilder.query<IClient & ICustomErr, IClient>({

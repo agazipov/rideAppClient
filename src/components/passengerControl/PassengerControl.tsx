@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { IClient } from '../../type/interface';
 import { useLazyGetClientByPhoneQuery } from '../../redux/api/api';
 import { POSITION_KEY } from '../../libs/constant';
-import { InputMask, useMask } from '@react-input/mask';
+import { useMask } from '@react-input/mask';
 
 interface IPassengerComponent {
     passenger: IClient,
