@@ -20,7 +20,7 @@ export default function FindPassenger({ position, setPassenger }: IPassengerComp
 
     const onSubmit: SubmitHandler<IClient> = async (data) => {
         try {
-            const response = await getPhone(data).unwrap();
+            const response = await getPhone(data.phone).unwrap();
             if (response.message === 'dont client') {
                 setIsFind(true);
             } else {

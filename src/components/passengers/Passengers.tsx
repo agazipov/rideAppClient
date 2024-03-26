@@ -19,6 +19,7 @@ const RESET_CLIENT: IClient = {
 	position: 'front',
 	name: '',
 	phone: '',
+	isFind: false
 }
 
 export default function Passenger({ clients, setPassenger }: IPassengerComponent) {

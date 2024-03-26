@@ -52,6 +52,7 @@ export interface IClient {
     note?: string,
     ride?: string[],
     position: Position,
+    isFind?: boolean,
 }
 
 export interface ListResponse<T> {

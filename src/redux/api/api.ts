@@ -56,6 +56,25 @@ export const api = createApi({
                 },
                 body: { id: eventID }
             }),
+            transformResponse: (response: IRide[]) => response.map((ride) => ({
+                ...ride,
+                passengers: ride.passengers.map(client => {
+                    if (client.name) {
+                        client.isFind = true;
+                    }
+                    return client;
+                })
+            })),
+
+            // ({
+            //     ...response,
+            //     passengers: response.passengers.map((client) => {
+            //         if (client.name) {
+            //             client.isFind = true;
+            //         }
+            //         return client;
+            //     })
+            // }),
             providesTags: (result) =>
                 result
                     ? [
@@ -71,20 +90,27 @@ export const api = createApi({
                 result
                     ? [
                         ...result.content.map(({ id }) => ({ type: 'Client' as const, id })),
-                        { type: 'Client', id: 'LIST' },
+                        { type: 'Client', id: 'PARTIAL-LIST' },
                     ]
-                    : [{ type: 'Client', id: 'LIST' }],
+                    : [{ type: 'Client', id: 'PARTIAL-LIST' }],
         }),
 
-        getClientByPhone: bilder.query<IClient & ICustomErr, IClient>({
+        getClientByPhone: bilder.query<IClient & ICustomErr, string>({
             query: (phone) => ({
                 url: 'getclient',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: phone,
-            })
+                body: { phone },
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                        { type: 'Client' as const, id: result.id },
+                        { type: 'Client', id: 'LIST' },
+                    ]
+                    : [{ type: 'Client', id: 'LIST' }],
         }),
 
         addRoute: bilder.mutation<IEvent, IEvent>({

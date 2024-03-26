@@ -14,19 +14,20 @@ interface IPassengerComponent {
 }
 
 export default function PassengerControl({ passenger, setPassenger }: IPassengerComponent) {
-    const { register, handleSubmit, control } = useForm<IClient>({
+    const { register, handleSubmit, control, setValue } = useForm<IClient>({
         defaultValues: passenger
     });
     const [getPhone, { data, isLoading, isError, error }] = useLazyGetClientByPhoneQuery(); // api для запроса по событию
     const [isFind, setIsFind] = useState<boolean>(false);
-
-    const onSubmit: SubmitHandler<IClient> = async (data) => {
+     
+    const onSubmit: SubmitHandler<IClient> = async (data) => {        
         try {
-            const response = await getPhone(data).unwrap();
+            const response = await getPhone(data.phone).unwrap();
             if (response.message === 'dont client') {
+                setValue('isFind', false);
                 setIsFind(true);
             } else {
-                const copyResponse = { ...response, position: passenger.position }
+                const copyResponse = { ...response, position: passenger.position, isFind: true }
                 setPassenger(copyResponse);
                 setIsFind(false);
             }
