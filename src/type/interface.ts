@@ -6,13 +6,10 @@ export interface IModalAddEvent {
 }
 
 export interface IModalClickEvent {
-    event: EventClickArg,
+    id: string,
     setShow: (e: null) => void,
-    content?: {
-        event: IEvent,
-        rides: IRide[],
-    }
 }
+
 
 export interface IEvent {
     id: string,

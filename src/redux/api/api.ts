@@ -65,16 +65,6 @@ export const api = createApi({
                     return client;
                 })
             })),
-
-            // ({
-            //     ...response,
-            //     passengers: response.passengers.map((client) => {
-            //         if (client.name) {
-            //             client.isFind = true;
-            //         }
-            //         return client;
-            //     })
-            // }),
             providesTags: (result) =>
                 result
                     ? [

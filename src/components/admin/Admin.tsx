@@ -6,7 +6,7 @@ export default function AdminPage() {
     return (
         <div>
             <Nav />
-            <Calendar isAdmin={true} />
+            <Calendar />
         </div >
     )
 }

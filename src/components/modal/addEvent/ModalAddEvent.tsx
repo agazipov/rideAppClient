@@ -14,7 +14,7 @@ export default function ModalAddEvent({ show, setShow }: IModalAddEvent) {
     const { register, handleSubmit, control } = useForm<IEvent>();
 
     const [addRoute] = useAddRouteMutation();
-
+    
     const onSubmit: SubmitHandler<IEvent> = (data) => {   
         const fixData = {
             ...data, start: timeZoneSkip(data.start), seats: 0

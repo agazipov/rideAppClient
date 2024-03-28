@@ -7,23 +7,24 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import ModalAddEvent from "../modal/addEvent/ModalAddEvent";
 import ModalClickEvent from "../modal/clickEvent/ModalClickEvent";
-import { EventClickArg } from "@fullcalendar/core";
 import { useGetRouteQuery } from "../../redux/api/api";
 import { dataParseTitleForSeats } from "../../libs/dataParser";
+
 import "./Calendar.css";
-import InfoPanel from "../infoPanel/InfoPanel";
 
 const initialDate = new Date();
 
-interface ICalendarComponent {
-    isAdmin: boolean
-}
-
-export default function Calendar({ isAdmin }: ICalendarComponent) {
+export default function Calendar() {
     const [showModalAddEvent, setShowModalAddEvent] = useState<boolean>(false);
-    const [showModalClickEvent, setShowModalClickEvent] = useState<EventClickArg | null>(null);
+    const [showModalClickEvent, setShowModalClickEvent] = useState<string | null>(null);
 
     const { data } = useGetRouteQuery();
+
+    if (!data) {
+        return (
+            <div>Нет данных</div>
+        )
+    }
 
     return (
         <section className="calendar container">
@@ -31,42 +32,37 @@ export default function Calendar({ isAdmin }: ICalendarComponent) {
                 <h3>Доступные  маршруты и свободные места</h3>
             </div>
             <div className="calendar__body">
-                {!isAdmin &&
-                    <InfoPanel />
-                }
-                {data &&
-                    <div className="calendar__fullCalendar">
-                        <FullCalendar
-                            plugins={[interactionPlugin, dayGridPlugin, bootstrap5Plugin]}
-                            themeSystem='bootstrap5'
-                            // editable={true}
-                            initialDate={initialDate}
-                            // ообрезает лишние недели в месяце
-                            fixedWeekCount={false}
-                            // растягивание
-                            expandRows={true}
-                            // дни только одного месяца
-                            showNonCurrentDates={true}
-                            headerToolbar={{
-                                left: 'prev,next today',
-                                center: 'title',
-                                right: isAdmin ? 'addEventButton' : ''
-                                // 'dayGridMonth'
-                            }}
-                            locale={ruLocale}
-                            eventClick={(info) => {
-                                setShowModalClickEvent(info);
-                            }}
-                            events={[...dataParseTitleForSeats(data)]}
-                            customButtons={{
-                                addEventButton: {
-                                    text: 'Добавить поезку',
-                                    click: () => setShowModalAddEvent(!showModalAddEvent)
-                                },
-                            }}
-                        />
-                    </div>
-                }
+                <div className="calendar__fullCalendar">
+                    <FullCalendar
+                        plugins={[interactionPlugin, dayGridPlugin, bootstrap5Plugin]}
+                        themeSystem='bootstrap5'
+                        // editable={true}
+                        initialDate={initialDate}
+                        // ообрезает лишние недели в месяце
+                        fixedWeekCount={false}
+                        // растягивание
+                        expandRows={true}
+                        // дни только одного месяца
+                        showNonCurrentDates={true}
+                        headerToolbar={{
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'addEventButton'
+                            // 'dayGridMonth'
+                        }}
+                        locale={ruLocale}
+                        eventClick={(info) => {
+                            setShowModalClickEvent(info.event.id);
+                        }}
+                        events={[...dataParseTitleForSeats(data)]}
+                        customButtons={{
+                            addEventButton: {
+                                text: 'Добавить поезку',
+                                click: () => setShowModalAddEvent(!showModalAddEvent)
+                            },
+                        }}
+                    />
+                </div>
                 {showModalAddEvent &&
                     createPortal(
                         <ModalAddEvent
@@ -79,9 +75,8 @@ export default function Calendar({ isAdmin }: ICalendarComponent) {
                 {showModalClickEvent &&
                     createPortal(
                         <ModalClickEvent
-                            event={showModalClickEvent}
+                            id={showModalClickEvent}
                             setShow={(e) => { setShowModalClickEvent(e) }}
-                        // content={{ event: data.find(e => e.start === eventDay)!, rides: rides }}
                         />,
                         document.getElementById('modalContainer')!
                     )

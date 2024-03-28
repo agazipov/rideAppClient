@@ -1,12 +1,12 @@
 import { MouseEvent, useRef } from "react";
 import { useSetMouseMove } from "../../context/mouseMove";
-import Calendar from "../calendar/Calendar";
 import Description from "../description/Description";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import Speedy from "../speedy/Speedy";
 import './MainPage.css'
 import Background from "../background/Background";
+import { ContainerViewRide } from "../viewRide/ContainerViewRide";
 
 export default function MainPage() {
     const mainRef = useRef(null!);
@@ -21,7 +21,7 @@ export default function MainPage() {
             <Background scrollContainer={mainRef.current}/>
             <Header />
             <Description />
-            <Calendar isAdmin={false} />
+            <ContainerViewRide />
             <Speedy />
             <Footer />
         </div>
