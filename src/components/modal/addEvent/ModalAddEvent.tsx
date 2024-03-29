@@ -62,17 +62,16 @@ export default function ModalAddEvent({ show, setShow }: IModalAddEvent) {
                             className="mb-3"
                             controlId="exampleForm.ControlTextarea1"
                         >
-                            <Form.Select aria-label="Default select example" {...register("title")}>
-                                <option>Выберите направление маршрута</option>
-                                <option value="Бак-Чел">Бакал-Сатка-Челябинск</option>
-                                <option value="Чел-Бак">Челябинск-Сатка-Бакал</option>
+                            <Form.Select aria-label="Default select example" {...register("title", { required: true })}>
+                                <option value="Бакал-Челябинск">Бакал-Сатка-Челябинск</option>
+                                <option value="Челябинск-Бакал">Челябинск-Сатка-Бакал</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group>
                             <Form.Check 
                                 type="checkbox"
                                 // id={`default-${type}`}
-                                label="Добавит к маршруту стандартные поездки"
+                                label="Добавить к маршруту стандартные поездки"
                                 placeholder="default" {...register("default")}
                             />
                         </Form.Group>

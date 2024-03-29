@@ -3,6 +3,7 @@ import { mapEvents } from "../../libs/mapEvents";
 import React, { useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import ModalClickEvent from "../modal/clickEvent/ModalClickEvent";
+import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import 'moment/locale/ru';
 
@@ -16,37 +17,47 @@ export function ViewRide({ events }: IViewRide) {
     moment.locale('ru');
     const [showModalClickEvent, setShowModalClickEvent] = useState<string | null>(null);
     const callbackEvent = useMemo(() => mapEvents(events), [events]);
-    console.log(callbackEvent);
-    
+    let currentDate = moment().format("D.M");
 
     return (
-        <div className="viewRide">
-            <div className="viewRide__header">
-                <h3>Доступные  маршруты и свободные места на {moment().format('MMMM Do YYYY')}</h3>
+        <section className="viewRide container">
+            <div className="viewRide__body">
+                <div className="viewRide__header">
+                    <h3>Доступные  маршруты и свободные места на {moment().format('MMMM Do YYYY')}</h3>
+                </div>
+                <div className="viewRide__events">
+                    {callbackEvent.length === 0 && <div>Поездок не запланировано</div>}
+                    {callbackEvent.map((event, index) => {
+                        let eventDate = moment(event[0].start).format("D.M");
+                        return (
+                            <div className={`events__group ${eventDate === currentDate ? 'currentDate' : ''}`} key={index}>
+                                <div>{eventDate}</div>
+                                {event.map((ride) => (
+                                    <React.Fragment key={ride.id}>
+                                        <div className="events__line"></div>
+                                        <Button
+                                            variant="outline-success"
+                                            className="events__btn"
+                                            onClick={() => setShowModalClickEvent(ride.id)}
+                                        >
+                                            {ride.title}
+                                        </Button>
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                        )
+                    })}
+                </div>
+                {showModalClickEvent &&
+                    createPortal(
+                        <ModalClickEvent
+                            id={showModalClickEvent}
+                            setShow={(e) => { setShowModalClickEvent(e) }}
+                        />,
+                        document.getElementById('modalContainer')!
+                    )
+                }
             </div>
-            <div className="viewRide__events">
-                {callbackEvent.length === 0 && <div>Поездок не запланировано</div>}
-                {callbackEvent.map((event, index) => (
-                    <div className="events__event" key={index}>
-                        <div>{event[0].start.toString().slice(5).replace('-', '.')}</div>
-                        {event.map((ride) => (
-                            <React.Fragment key={ride.id}>
-                                <div className="events__hr"></div>
-                                <div className="events__ride" onClick={() => setShowModalClickEvent(ride.id)}>{ride.title}</div>
-                            </React.Fragment>
-                        ))}
-                    </div>
-                ))}
-            </div>
-            {showModalClickEvent &&
-                createPortal(
-                    <ModalClickEvent
-                        id={showModalClickEvent}
-                        setShow={(e) => { setShowModalClickEvent(e) }}
-                    />,
-                    document.getElementById('modalContainer')!
-                )
-            }
-        </div>
+        </section>
     )
 }
