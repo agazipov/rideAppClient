@@ -1,12 +1,12 @@
 import { MouseEvent, useRef } from "react";
 import { useSetMouseMove } from "../../context/mouseMove";
-import Description from "../description/Description";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
-import Speedy from "../speedy/Speedy";
+import Description from "../../components/description/Description";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
+import Speedy from "../../components/speedy/Speedy";
 import './MainPage.css'
-import Background from "../background/Background";
-import { ContainerViewRide } from "../viewRide/ContainerViewRide";
+import Background from "../../components/background/Background";
+import { ContainerViewRide } from "../../components/viewRide/ContainerViewRide";
 
 export default function MainPage() {
     const mainRef = useRef(null!);

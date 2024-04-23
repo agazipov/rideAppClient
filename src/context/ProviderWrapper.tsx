@@ -1,4 +1,4 @@
-import MainPage from "../components/main/MainPage";
+import MainPage from "../pages/main/MainPage";
 import { MouseMoveProvider } from "./mouseMove";
 
 export default function ProviderWrapper() {

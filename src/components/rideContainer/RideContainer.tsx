@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import './rideContainer.css';
 import { useDeleteRideMutation } from "../../redux/api/api";
 import Salon from "../salon/Salon";
-import { countFreeSeaats } from "../../libs/counters";
+import { countFreeSeats } from "../../libs/counters";
 import { useAuth } from "../../hooks/useAuth";
 import Passenger from "../passengers/Passengers";
 
@@ -29,7 +29,7 @@ export function RideContainer({ ride, event }: IRideComponent) {
                         <li>Время: {ride.time}</li>
                         <li>Водитель: {ride.driver}</li>
                         <li>Машина: {ride.car}</li>
-                        <li>Свободные места: {countFreeSeaats(ride.passengers)}</li>
+                        <li>Свободные места: {countFreeSeats(ride.passengers)}</li>
                     </ul>
                     {!auth.token && <Salon passengers={ride.passengers} />}
                     {/* <Passenger client={ride.passengers} /> */}
@@ -43,7 +43,7 @@ export function RideContainer({ ride, event }: IRideComponent) {
                     {isSetting ? 'Не менять' : 'Изменить'}
                 </Button>
                 <Button
-                    onClick={() => deleteRide({ ...ride, freeSeats: -countFreeSeaats(ride.passengers) })}
+                    onClick={() => deleteRide({ ...ride, freeSeats: -countFreeSeats(ride.passengers) })}
                     variant="danger"
                 >
                     Удалить поездку

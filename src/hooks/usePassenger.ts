@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { IClient } from "../type/interface";
-import { countFreeSeaats } from "../libs/counters";
+import { countFreeSeats } from "../libs/counters";
 import { SubmitHandler } from "react-hook-form";
 
 const defaultValue: IClient[] = [
@@ -32,7 +32,7 @@ const defaultValue: IClient[] = [
 
 export function usePassenger(passengers: IClient[] = defaultValue) {  
     const [salon, setSalon] = useState<IClient[]>(passengers);
-    const ref = useRef(countFreeSeaats(passengers));
+    const ref = useRef(countFreeSeats(passengers));
     const defaultFreeSeats = ref.current;
 
     const setPassenger: SubmitHandler<IClient> = useCallback((data) => {
@@ -44,11 +44,11 @@ export function usePassenger(passengers: IClient[] = defaultValue) {
 
     // выглядит как полная хуйня
     const freeSeatsAdd = useCallback(() => {
-       return countFreeSeaats(salon);
+       return countFreeSeats(salon);
     }, [salon]);
 
     const freeSeatsChange = useCallback(() => {
-        return countFreeSeaats(salon) - defaultFreeSeats;
+        return countFreeSeats(salon) - defaultFreeSeats;
     }, [salon, defaultFreeSeats]);
 
     console.log('salon', salon);

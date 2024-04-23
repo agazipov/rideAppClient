@@ -6,13 +6,13 @@ export function ContainerViewRide() {
 
     if (isLoading) {
         return (
-            <div>Загрузка</div>
+            <div style={{zIndex: 10}}>Загрузка</div>
         )
     }
 
     if (!data) {
         return (
-            <div>Нет данных</div>
+            <div style={{zIndex: 10}}>Нет данных</div>
         )
     }
     

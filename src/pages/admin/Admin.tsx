@@ -1,5 +1,5 @@
-import Calendar from "../calendar/Calendar";
-import Nav from "../nav/Nav";
+import Calendar from "../../components/calendar/Calendar";
+import Nav from "../../components/nav/Nav";
 
 export default function AdminPage() {
 
