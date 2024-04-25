@@ -1,4 +1,3 @@
-// import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Auth from "../auth/Auth";
 import AdminPage from "../admin/Admin";
