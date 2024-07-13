@@ -15,11 +15,12 @@
 
     width: 100%;
     height: 100%;
-    background-color: #c1f7e1;
+    background-color: #bceeb3;
+    /* background-color: #c1f7e1; */
 }
 
 .map__svg {
-    background-image: url('./map_2.png');
+    background-image: url('./new_map_5.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

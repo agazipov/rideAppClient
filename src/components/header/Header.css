@@ -2,16 +2,30 @@
     z-index: 10;
     width: 100%;
 
-    /* margin-top: 30px; */
+    padding: var(--padding-block);
 
-    background-color: #dcdcdccc;
+    background-color: var(--balans-color);
+    
+    border-bottom: var(--border-block);
+    opacity: var(--opacity-block);
+}
 
-    border-bottom: 3px solid black;
-    /* border-radius: 16px; */
+.header__logo {
+    position: relative;
+}
+
+.header__logo::after {
+    content: attr(data-logo);
+    position: absolute;
+    -webkit-text-stroke: 0.12em var(--main-color);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    font-size: 1em;
 }
 
 .header__container {
-    padding: 20px;
     display: flex;
     justify-content: space-between;
 }
@@ -24,8 +38,8 @@ q {
     font-style: italic;
 }
 
-h1 {
-    font-weight: 700;
-    color: cornflowerblue;
-    font-family: "Kreadon-Bold", sans-serif;
+@media (max-width: 576px) {
+    .header__quote {
+        display: none;
+    }
 }

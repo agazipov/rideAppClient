@@ -1,0 +1,90 @@
+.description__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 96px;
+    grid-row-gap: 64px;
+}
+
+.description__section {
+    z-index: -5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--padding-block);
+    border-radius: var(--radius-block);
+    border-bottom: var(--border-block);
+    outline: 2px solid var(--main-color);
+    outline-offset: 2px;
+}
+
+.description__section p{
+    box-shadow: 0px 0px 8px var(--balans-color);
+    background-color: #c1d2a699;
+    border-radius: 6px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.description__header {
+    position: relative;
+}
+
+.modify {
+    text-align: right;
+}
+
+.description__header::after {
+    content: attr(data-headerfist);
+    position: absolute;
+    -webkit-text-stroke: 0.12em var(--balans-color);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    font-size: 1em;
+}
+
+.section_1 {
+    background-image: url('../../../../public/webp/stetam.webp');
+}
+.section_2 {
+    background-image: url('../../../../public/webp/taxist.webp');
+}
+.section_3 {
+    background-image: url('../../../../public/webp/rock.webp');
+}
+.section_4 {
+    background-image: url('../../../../public/webp/samy-naseri.webp');
+}
+.section_5 {
+    background-image: url('../../../../public/webp/baby.webp');
+}
+.section_6 {
+    background-image: url('../../../../public/webp/drive_primary.webp');
+}
+
+.description__section h4 {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 992px) {
+    .description__tabs {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 64px;
+        grid-row-gap: 52px;
+    }
+}
+
+@media (max-width: 576px) {
+    .description__services {
+        gap: 24px;
+    }
+    .description__tabs {
+        grid-template-columns: 75%;
+        grid-template-rows: repeat(6, 1fr);
+        grid-row-gap: 24px;
+        justify-content: center;
+    }
+}

@@ -7,9 +7,21 @@
 
 /* Prevent font size inflation */
 html {
+  --main-color: #3D5220;
+  --balans-color: #B7CB99;
+  --second-color: #778FD2;
+  --third-color: #2A3759;
+  --auxiliary-color: #431D32;
+  --radius-block: 30px;
+  --border-block: 3px solid var(--second-color);
+  --opacity-block: 0.85;
+  --padding-block: 20px;
+  --gap: 14px;
+
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  height: 100%;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -26,7 +38,8 @@ ol[role='list'] {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
+  height: 100%;
+  /* min-height: 100vh; */
   line-height: 1.5;
 }
 
@@ -40,6 +53,12 @@ button, input, label {
 h1, h2,
 h3, h4 {
   text-wrap: balance;
+}
+
+h1 {
+  font-weight: 700;
+  color: var(--second-color);
+  font-family: "Kreadon-Bold", sans-serif;
 }
 
 /* A elements that don't have a class get default styles */
@@ -87,6 +106,7 @@ textarea:not([rows]) {
 }
 
 #root {
+  height: 100%;
   font-family: "Kreadon-Regular", sans-serif;
   background-color: ghostwhite;
 }

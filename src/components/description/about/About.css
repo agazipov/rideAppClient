@@ -1,0 +1,26 @@
+.description__about {
+    padding: var(--padding-block);
+    margin: 0 auto;
+    
+    background-color: var(--balans-color);
+    border-radius: var(--radius-block);
+    border-bottom: var(--border-block);
+    opacity: var(--opacity-block);
+    outline: 2px solid var(--main-color);
+    outline-offset: 2px;
+    
+    text-align: center;
+}
+.about__schedule {
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+}
+/* .description__stocks {
+    padding: var(--padding-block);
+    
+    background-color: var(--balans-color);
+    border-radius: var(--radius-block);
+    border-bottom: var(--border-block);
+    opacity: var(--opacity-block);
+} */

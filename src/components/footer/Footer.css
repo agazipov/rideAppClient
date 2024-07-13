@@ -7,9 +7,8 @@ p {
     width: 100%;
     min-height: 96px;
 
-    background-color: #dcdcdccc;
-
-    border-top: 3px solid black;
+    background-color: var(--main-color);
+    border-top: var(--border-block);
 
     display: flex;
     flex-direction: column;

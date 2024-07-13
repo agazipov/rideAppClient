@@ -6,7 +6,6 @@ import Header from "../../components/header/Header";
 import Speedy from "../../components/speedy/Speedy";
 import './MainPage.css'
 import Background from "../../components/background/Background";
-import { ContainerViewRide } from "../../components/viewRide/ContainerViewRide";
 
 export default function MainPage() {
     const mainRef = useRef(null!);
@@ -17,11 +16,10 @@ export default function MainPage() {
     };
 
     return (
-        <div className="main" onMouseMove={handleMouseMove} ref={mainRef}>
-            <Background scrollContainer={mainRef.current}/>
+        <div className="wrapper" onMouseMove={handleMouseMove} ref={mainRef}>
+            <Background scrollContainer={mainRef.current} />
             <Header />
             <Description />
-            <ContainerViewRide />
             <Speedy />
             <Footer />
         </div>

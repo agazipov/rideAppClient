@@ -1,0 +1,55 @@
+.desc__title {
+    font-size: 1.4rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.desc__title-count {
+    font-family: "Kreadon-Bold";
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: var(--auxiliary-color);
+}
+
+.desc__header,
+.desc__span,
+.desc__title-text {
+    position: relative;
+}
+
+.desc__header::after {
+    content: attr(data-header);
+    position: absolute;
+    -webkit-text-stroke: 0.12em var(--main-color);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    font-size: 1em;
+}
+
+.desc__span::after {
+    content: attr(data-span);
+    position: absolute;
+    -webkit-text-stroke: 0.12em var(--balans-color);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    font-size: 1em;
+}
+
+.desc__title-text::after {
+    content: attr(data-text);
+    position: absolute;
+    -webkit-text-stroke: 0.15em var(--balans-color);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    font-size: 1em;
+}
