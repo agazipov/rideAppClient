@@ -24,3 +24,23 @@ export function mapEvents(events: IEvent[]): IEvent[][] {
         return arr.filter(event => event.start === elem);
     });
 }
+
+// export function mapEvents(events: IEvent[]): IEvent[][] {
+//     if (!events.length) return [];
+
+//     // Сортировка событий по дате
+//     const sortedEvents = [...events].sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
+
+//     // Группировка событий по уникальным датам
+//     const groupedEvents = sortedEvents.reduce((acc, event) => {
+//         const date = event.start.toISOString().split('T')[0]; // Получение даты в формате YYYY-MM-DD
+//         if (!acc[date]) {
+//             acc[date] = [];
+//         }
+//         acc[date].push(event);
+//         return acc;
+//     }, {} as Record<string, IEvent[]>);
+
+//     // Преобразование объекта в массив массивов
+//     return Object.values(groupedEvents);
+// }

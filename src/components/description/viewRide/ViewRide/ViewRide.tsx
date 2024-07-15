@@ -1,7 +1,6 @@
 import { IEvent } from "../../../../type/interface";
 import { mapEvents } from "../../../../libs/mapEvents";
 import { useMemo, useState } from "react";
-import { createPortal } from "react-dom";
 import ModalClickEvent from "../../../modal/clickEvent/ModalClickEvent";
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
@@ -42,12 +41,12 @@ export function ViewRide({ events }: IViewRide) {
                                                 <svg width="155" height="10">
                                                     <path
                                                         d="M 1 1 L 220 1"
-                                                        stroke-miterlimit="10"
+                                                        strokeMiterlimit="10"
                                                         fill="none"
                                                         stroke="#3835B9"
-                                                        stroke-width="5"
-                                                        stroke-dasharray="5"
-                                                        stroke-dashoffset="1">
+                                                        strokeWidth="5"
+                                                        strokeDasharray="5"
+                                                        strokeDashoffset="1">
                                                         <animate
                                                             attributeName="stroke-dashoffset"
                                                             values="100;0"
@@ -74,13 +73,10 @@ export function ViewRide({ events }: IViewRide) {
                 })}
             </div>
             {showModalClickEvent &&
-                createPortal(
-                    <ModalClickEvent
-                        id={showModalClickEvent}
-                        setShow={(e) => { setShowModalClickEvent(e) }}
-                    />,
-                    document.getElementById('modalContainer')!
-                )
+                <ModalClickEvent
+                    id={showModalClickEvent}
+                    setShow={(e) => { setShowModalClickEvent(e) }}
+                />
             }
         </section>
     )

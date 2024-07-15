@@ -4,7 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import ruLocale from '@fullcalendar/core/locales/ru';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import ModalAddEvent from "../modal/addEvent/ModalAddEvent";
 import ModalClickEvent from "../modal/clickEvent/ModalClickEvent";
 import { useGetRouteQuery } from "../../redux/api/api";
@@ -64,22 +63,16 @@ export default function Calendar() {
                     />
                 </div>
                 {showModalAddEvent &&
-                    createPortal(
-                        <ModalAddEvent
-                            show={showModalAddEvent}
-                            setShow={(e) => setShowModalAddEvent(e)}
-                        />,
-                        document.getElementById('modalContainer')!
-                    )
+                    <ModalAddEvent
+                        show={showModalAddEvent}
+                        setShow={(e) => setShowModalAddEvent(e)}
+                    />
                 }
                 {showModalClickEvent &&
-                    createPortal(
-                        <ModalClickEvent
-                            id={showModalClickEvent}
-                            setShow={(e) => { setShowModalClickEvent(e) }}
-                        />,
-                        document.getElementById('modalContainer')!
-                    )
+                    <ModalClickEvent
+                        id={showModalClickEvent}
+                        setShow={(e) => { setShowModalClickEvent(e) }}
+                    />
                 }
             </div>
         </section>

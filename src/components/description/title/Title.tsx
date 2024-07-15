@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
-import './Title.css'
-
-const CONTENT_TITLE = {
-    titleHeader: 'Сервис по перевозке и доставке',
-    titleSpan: 'Нашими услугам уже воспользовались',
-    titleText: ['Осуществляем перевозки по маршрутам', 'Бакал-Сатка-Челябинск и Челябинск-Сатка-Бакал']
-}
+import './Title.css';
+import { CONTENT_TITLE } from '../../../libs/constant';
 
 export default function Title() {
     const [count, setCount] = useState(73184)
     useEffect(() => {
         const interval = setInterval(() => {
             setCount(prev => prev += 1)
-        }, 10000);
+        }, 100000);
         return () => clearInterval(interval)
     }, []);
 
@@ -24,7 +19,7 @@ export default function Title() {
             <div >
                 {CONTENT_TITLE.titleText.map((text, index) => {
                     return (
-                        <p className='desc__title-text' data-text={CONTENT_TITLE.titleText[index]}>{text}</p>)
+                        <p  key={index} className='desc__title-text' data-text={CONTENT_TITLE.titleText[index]}>{text}</p>)
                 })
                 }
             </div>

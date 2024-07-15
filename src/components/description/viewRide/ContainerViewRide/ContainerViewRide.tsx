@@ -3,7 +3,13 @@ import { ViewRide } from "../ViewRide/ViewRide";
 import './ContainerViewRide.css';
 
 export default function ContainerViewRide() {
-    const { data, isLoading } = useGetRouteQuery();
+    const { data, isLoading, error } = useGetRouteQuery();
+
+    if (error) {
+        return (
+            <div className="containerViewRide">Ошибка</div>
+        )
+    }
 
     if (isLoading) {
         return (
