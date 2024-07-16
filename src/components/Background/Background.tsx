@@ -2,12 +2,11 @@ import { animated, useScroll } from '@react-spring/web'
 import { useEffect, useRef, useState } from 'react';
 
 import './Background.css';
+import { PATH_LENGTH } from '../../libs/constant';
 
 interface IBackGround {
     scrollContainer: React.MutableRefObject<HTMLDivElement>
 }
-
-const PATH_LENGTH = 1350;
 
 export default function Background({ scrollContainer }: IBackGround) {
     const ref: any = useRef();
