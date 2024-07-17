@@ -10,7 +10,7 @@ export const api = createApi({
     reducerPath: 'calendar',
     tagTypes: ['Route', 'Ride', 'Client'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/',
+        baseUrl: 'api/',
         prepareHeaders: (headers, { getState }) => {
             // const token = window.localStorage.getItem('token');
             const token = (getState() as RootState).auth.token;
