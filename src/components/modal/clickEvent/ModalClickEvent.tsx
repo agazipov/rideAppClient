@@ -3,8 +3,8 @@ import Modal from 'react-bootstrap/Modal';
 import { IModalClickEvent } from '../../../type/interface';
 import './modalClickEvent.css'
 import { useState } from 'react';
-import { RideForm } from '../../rideForm/RideForm';
-import { RideContainer } from '../../rideContainer/RideContainer';
+import RideForm from '../../rideForm/RideForm';
+import RideContainer from '../../rideContainer/RideContainer';
 import { useDeleteRouteMutation, useGetRideQuery, useGetRouteState } from '../../../redux/api/api';
 import { useAuth } from '../../../hooks/useAuth';
 

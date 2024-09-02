@@ -12,7 +12,7 @@ interface IViewRide {
     events: IEvent[]
 }
 
-export function ViewRide({ events }: IViewRide) {
+export default function ViewRide({ events }: IViewRide) {
     moment.locale('ru');
     const [showModalClickEvent, setShowModalClickEvent] = useState<string | null>(null);
     const callbackEvent = useMemo(() => mapEvents(events), [events]);

@@ -1,5 +1,5 @@
 import { useGetRouteQuery } from "../../../../redux/api/api";
-import { ViewRide } from "../ViewRide/ViewRide";
+import ViewRide from "../ViewRide/ViewRide";
 import './ContainerViewRide.css';
 
 export default function ContainerViewRide() {

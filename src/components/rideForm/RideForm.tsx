@@ -19,7 +19,7 @@ interface IRideComponent {
     ride?: IRide,
 }
 
-export function RideForm({ show, ride, event }: IRideComponent) {
+export default function RideForm({ show, ride, event }: IRideComponent) {
     // добавить проверку
     const { register, handleSubmit } = useForm<IRide>({
         defaultValues: {

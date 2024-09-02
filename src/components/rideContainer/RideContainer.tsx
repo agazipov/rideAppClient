@@ -1,6 +1,6 @@
 import { IEvent, IRide } from "../../type/interface";
 import { useState } from "react";
-import { RideForm } from "../rideForm/RideForm";
+import RideForm from "../rideForm/RideForm";
 import Button from 'react-bootstrap/Button';
 import './rideContainer.css';
 import { useDeleteRideMutation } from "../../redux/api/api";
@@ -14,7 +14,7 @@ interface IRideComponent {
     event?: IEvent
 }
 
-export function RideContainer({ ride, event }: IRideComponent) {
+export default function RideContainer({ ride, event }: IRideComponent) {
     const [isSetting, setIsSetting] = useState<boolean>(false);
     const [deleteRide] = useDeleteRideMutation();
     const auth = useAuth();
