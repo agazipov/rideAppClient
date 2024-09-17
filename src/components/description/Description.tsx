@@ -1,6 +1,6 @@
 import './Description.css'
-import About from './about/About'
 import Services from './services/Services'
+import About from './about/About'
 import Title from './title/Title'
 import ContainerViewRide from './viewRide/ContainerViewRide/ContainerViewRide'
 

@@ -11,7 +11,7 @@ interface ISalon {
     setPassenger?: SubmitHandler<IClient>,
 }
 
-export default function Salon({ passengers, setPassenger }: ISalon) {
+export default function SalonContainer({ passengers, setPassenger }: ISalon) {
     const { register, handleSubmit, setValue, reset } = useForm<IClient>();
     const [position, setPosition] = useState<Position | null>(null);
 

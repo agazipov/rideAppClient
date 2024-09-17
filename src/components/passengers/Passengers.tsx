@@ -4,9 +4,9 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useState, useEffect } from 'react';
 import { IClient } from "../../type/interface";
 import { POSITION_KEY, TABLE_HEANDING } from '../../libs/constant';
+import PassengerControl from '../passengerControl/PassengerControl';
 import PassengerContainer from '../passengerContainer/PassengerContainer';
 import { SubmitHandler } from 'react-hook-form';
-import PassengerControl from '../passengerControl/PassengerControl';
 
 import './Passenger.css';
 
@@ -22,7 +22,7 @@ const RESET_CLIENT: IClient = {
 	isFind: false
 }
 
-export default function Passenger({ clients, setPassenger }: IPassengerComponent) {
+export default function Passengers({ clients, setPassenger }: IPassengerComponent) {
 	const [settingForm, setSettingForm] = useState<IClient | null>(null);
 	
 	// убирает форму при изменении полей

@@ -3,13 +3,13 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IEvent, IRide, Position } from '../../type/interface';
+import Passengers from '../passengers/Passengers';
 import { useAddRideMutation, useChangeRideMutation, useGetRouteState } from '../../redux/api/api';
 import Salon from '../salon/Salon';
 import './rideForm.css'
 import { usePassenger } from '../../hooks/usePassenger';
 import { Row, Col } from 'react-bootstrap';
 import PassengerContainer from '../passengerContainer/PassengerContainer';
-import Passengers from '../passengers/Passengers';
 
 const SALON_STATE: Position[] = ['front', 'left', 'mid', 'right']
 
